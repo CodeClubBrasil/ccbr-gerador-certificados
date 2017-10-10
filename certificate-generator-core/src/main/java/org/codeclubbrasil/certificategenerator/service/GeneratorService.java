@@ -20,21 +20,31 @@ public class GeneratorService {
 	private final static Logger log = LoggerFactory.getLogger(GeneratorService.class);
 
 	public String generate(Template template, CodeClubClass codeClass) throws Exception {
+		log.info("GeneratorService.generate");
 		Generator gen = getGenerator(template);
 		String outputDir = gen.generate(template, codeClass);
+		log.info("GeneratorService output: " + outputDir);
 		return outputDir;
 	}
 
 	public void generateAndSaveZip(Template template, CodeClubClass codeClass, String zipFileName) throws Exception {
-		byte[] zip = ZipUtils.zipFiles(generate(template, codeClass));
+		log.info("GeneratorService.generateAndSaveZip");
+		byte[] zip = generateBytes(template, codeClass);
 		ZipUtils.saveZipFile(zip, zipFileName);
 	}
 
+	public byte[] generateBytes(Template template, CodeClubClass codeClass) throws Exception {
+		log.info("GeneratorService.generateBytes");
+		return ZipUtils.zipFiles(generate(template, codeClass));
+	}
+
 	public String generateAndSaveZip(Template template, CodeClubClass codeClass) throws Exception {
+		log.info("GeneratorService.generateAndSaveZip");
 		String pdfInput = generate(template, codeClass);
 		byte[] zip = ZipUtils.zipFiles(pdfInput);
 		String zipFileName = pdfInput + codeClass.getName() + ".zip";
 		ZipUtils.saveZipFile(zip, zipFileName);
+		log.info("GeneratorService.zipFileName: " + zipFileName);
 		return zipFileName;
 	}
 

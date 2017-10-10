@@ -51,7 +51,7 @@ public class PDFGenerator implements Generator {
 	 * @throws GeneratorException
 	 */
 	private String generatePdf(Template template, CodeClubClass codeClass) throws GeneratorException {
-
+		log.info("PDFGenerator.generatePdf");
 		List<String> names = codeClass.getStudents();
 		String outDir = getOutDir();
 		String leader = codeClass.getLeader();
@@ -63,7 +63,7 @@ public class PDFGenerator implements Generator {
 		for (int i = 0; i < names.size(); i++) {
 			PDDocument pDDocument;
 			try {
-				log.info(template.getAbsolutePath());
+				log.info("Using template: " + template.getAbsolutePath());
 				pDDocument = PDDocument.load(new File(template.getAbsolutePath()));
 			} catch (IOException e) {
 				throw new GeneratorException("Error on load document template", e);
@@ -85,7 +85,7 @@ public class PDFGenerator implements Generator {
 
 		}
 
-		log.info(names.size() + " arquivos gerados em: " + outDir);
+		log.info(names.size() + " files generated in: " + outDir);
 
 		return outDir;
 

@@ -31,7 +31,7 @@ public class GeneratorServiceFilesTest {
 
 	@Test()
 	public void whenDataOkThenGenerateScratch1() throws Exception {
-		String templateName = "scratch/Scratch_1_template.pdf";
+		String templateName = "templates/scratch1.pdf";
 		String leader = "Sandro Giacomozzi";
 		List<String> students = Arrays.asList("ADRIANA KRUGER GIACOMOZZI", "ISABELA KRUGER GIACOMOZZI");
 		assertTrue(callGenerate("Scratch1", templateName, leader, students));
@@ -39,7 +39,7 @@ public class GeneratorServiceFilesTest {
 
 	@Test()
 	public void whenDataOkThenGenerateScratch2() throws Exception {
-		String templateName = "scratch/Scratch_2_template.pdf";
+		String templateName = "templates/scratch2.pdf";
 		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("ARTHUR SCHRAMM DE LIMA", "EVILYN BIANCA DE PAULA JUNG");
 		assertTrue(callGenerate("Scratch2", templateName, leader, students));
@@ -47,7 +47,7 @@ public class GeneratorServiceFilesTest {
 
 	@Test()
 	public void whenDataOkThenGeneratePhyton1() throws Exception {
-		String templateName = "phyton/Phyton_1_template.pdf";
+		String templateName = "templates/phyton1.pdf";
 		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("FERNANDO CORRÊA RODRIGUES DOS SANTOS",
 				"GUILHERME HANDRYCH DE SOUZA ALVES");
@@ -56,7 +56,7 @@ public class GeneratorServiceFilesTest {
 
 	@Test()
 	public void whenDataOkThenGeneratePhyton2() throws Exception {
-		String templateName = "phyton/Phyton_2_template.pdf";
+		String templateName = "templates/phyton2.pdf";
 		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("RAFAEL PONTES STENGER", "LARISSA MARTINS DO AMARAL");
 		assertTrue(callGenerate("Phyton2", templateName, leader, students));
@@ -64,7 +64,7 @@ public class GeneratorServiceFilesTest {
 
 	@Test()
 	public void whenDataOkThenGenerateWeb1() throws Exception {
-		String templateName = "web/Web_1_template.pdf";
+		String templateName = "templates/web1.pdf";
 		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("WENDELL KAWE SAMPAIO DE SOUZA", "RICHARD PAULINO DA SILVA");
 		assertTrue(callGenerate("Web1", templateName, leader, students));
@@ -72,7 +72,7 @@ public class GeneratorServiceFilesTest {
 
 	@Test()
 	public void whenDataOkThenGenerateWeb2() throws Exception {
-		String templateName = "web/Web_2_template.pdf";
+		String templateName = "templates/web2.pdf";
 		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("TAMARIS DA SILVA DE CARVALHO", "CAROLINA FORTUNATO DA LUZ",
 				"RICHARD YAGO SAMPAIO DE SOUZA");
@@ -81,11 +81,11 @@ public class GeneratorServiceFilesTest {
 
 	@Test()
 	public void whenGeneratorZipThenGetZip() throws Exception {
-		String templateName = "web/Web_2_template.pdf";
+		String templateName = "templates/web2.pdf";
 		String leader = "Sandro Giacomozzi";
 		List<String> students = Arrays.asList("TAMARIS DA SILVA DE CARVALHO", "CAROLINA FORTUNATO DA LUZ",
 				"RICHARD YAGO SAMPAIO DE SOUZA");
-		assertTrue(callGenerateAndZip("Web2", templateName, leader, students));
+		assertTrue(callGenerateAndZip("Web2Zip", templateName, leader, students));
 	}
 
 	private boolean callGenerate(String className, String templateName, String leader, List<String> students)
