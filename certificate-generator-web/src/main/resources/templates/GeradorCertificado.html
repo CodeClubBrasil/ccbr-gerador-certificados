@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="LayoutPadrao">
+
+<head>
+	<title>Code Clube: Gerador de Certificado</title>
+</head>
+
+<section layout:fragment="conteudo">
+    <form class="form-horizontal" method="POST" th:action="@{generate}" th:object="${certificate}">
+    	<div layout:include="MensagemGeral"></div>
+    	<div layout:include="MensagemErro"></div>
+    
+    	<div class="panel panel-default">
+    		<div class="panel-heading">	
+    			<div class="clearfix">
+	   				<h1 class="panel-title aw-titulo-panel">Gerar Certificados</h1>
+	   			</div>
+    		</div>
+    		
+    		<div class="panel-body">
+				<div class="form-group" th:classappend="${#fields.hasErrors('students')} ? has-error">
+					<label for="students" class="col-sm-2 control-label">Alunos</label>
+					<div class="col-sm-4"> 
+						<textarea name="students" placeholder="Informe um nome por linha" class="form-control" id="students" 
+						  th:field="*{students}" cols="60" rows="10"></textarea>
+					</div>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('leaderName')} ? has-error">
+					<label for="leaderName" class="col-sm-2 control-label">Líder</label>
+					<div class="col-sm-4"> 
+						<input type="text" placeholder="Nome do Lider do Clube" class="form-control" id="leaderName" th:field="*{leaderName}"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="course" class="col-sm-2 control-label">Curso</label>
+					<div class="col-sm-2">
+						<select class="form-control" name="course" th:field="*{course}">
+							<option th:each="course : ${allCourses}" th:value="${course.code}" th:text="${course.description}"></option>
+                    	</select>
+                    </div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Gerar</button>
+					</div>
+				</div>
+			</div>
+    	</div>
+    </form>
+</section>
+</html>
