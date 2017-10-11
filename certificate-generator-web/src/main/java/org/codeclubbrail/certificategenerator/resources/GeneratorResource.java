@@ -2,11 +2,14 @@ package org.codeclubbrail.certificategenerator.resources;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.net.URL;
+import java.io.InputStream;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.codeclubbrail.certificategenerator.resources.model.Certificate;
 import org.codeclubbrail.certificategenerator.resources.model.Course;
 import org.codeclubbrasil.certificategenerator.domain.CodeClubClass;
@@ -34,7 +37,7 @@ public class GeneratorResource {
 	@RequestMapping(path = "/generate", method = RequestMethod.POST)
 	public ResponseEntity<Resource> generate(Certificate certificate) throws Exception {
 
-		String templateName = "templates/" + certificate.getCourse() + ".pdf";
+		String templateName = "/pdf/" + certificate.getCourse() + ".pdf";
 		String leader = certificate.getLeaderName();
 
 		certificate.setStudents(certificate.getStudents().replaceAll("\n", ";"));
@@ -42,10 +45,31 @@ public class GeneratorResource {
 
 		List<String> students = Arrays.asList(certificate.getStudents().split(";"));
 
+		InputStream initialStream = getClass().getResourceAsStream(templateName);
+
+		String templateTempDir = System.getProperty("java.io.tmpdir") + "/pdf/";
+		String templateTempFile = templateTempDir + certificate.getCourse();
+
+		File tempDir = new File(templateTempDir);
+
+		try {
+			FileUtils.forceDelete(tempDir);
+		} catch (Exception e) {
+		}
+
+		try {
+			FileUtils.forceMkdir(tempDir);
+		} catch (Exception e) {
+		}
+
+		File templateFile = new File(templateTempFile);
+
+		java.nio.file.Files.copy(initialStream, templateFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+		IOUtils.closeQuietly(initialStream);
+
 		GeneratorService service = new GeneratorService();
 		Template template = new Template(TemplateType.PDF);
-		URL templateURL = ClassLoader.getSystemResource(templateName);
-		File templateFile = new File(templateURL.getFile());
 		template.setName(templateFile.getName());
 		template.setPath(templateFile.getParentFile().toString());
 		CodeClubClass codeClass = new CodeClubClass(certificate.getCourse());
