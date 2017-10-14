@@ -1,27 +1,32 @@
 package org.codeclubbrail.certificategenerator.resources.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.Data;
+
+@Data
 public class Course {
 
 	private String code;
 	private String description;
-	
-	public Course(String code, String description) {
-		super();
-		this.code = code;
-		this.description = description;
-	}	
-	
-	public String getCode() {
-		return code;
+
+	public static Course fromData(String code, String description) {
+		Course course = new Course();
+		course.setCode(code);
+		course.setDescription(description);
+		return course;
 	}
-	public void setCode(String code) {
-		this.code = code;
+
+	public static List<Course> fromAllAvaibleCourses() {
+		List<Course> allCources = new ArrayList<Course>();
+		allCources.add(fromData("scratch1", "Scratch 1"));
+		allCources.add(fromData("scratch2", "Scratch 2"));
+		allCources.add(fromData("phyton1", "Phyton 1"));
+		allCources.add(fromData("phyton2", "Phyton 2"));
+		allCources.add(fromData("web1", "Web 1"));
+		allCources.add(fromData("web2", "Web 2"));
+		return allCources;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
+
 }

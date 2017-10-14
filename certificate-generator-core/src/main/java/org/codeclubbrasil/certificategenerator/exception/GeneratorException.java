@@ -4,10 +4,6 @@ public class GeneratorException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public GeneratorException() {
-		super();
-	}
-
 	public GeneratorException(String message) {
 		super(message);
 	}
@@ -16,8 +12,5 @@ public class GeneratorException extends Exception {
 		super(message, cause);
 	}
 
-	public GeneratorException(Throwable cause) {
-		super(cause);
-	}
 
 }

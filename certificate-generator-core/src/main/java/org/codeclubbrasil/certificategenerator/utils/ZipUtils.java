@@ -12,13 +12,6 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * 
- * Zip utilities
- * 
- * @author sandro
- *
- */
 public abstract class ZipUtils {
 
 	private final static Logger log = LoggerFactory.getLogger(ZipUtils.class);

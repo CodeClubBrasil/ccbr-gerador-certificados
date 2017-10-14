@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
-	<meta charset="UTF-8"/>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-	
-	<title>Cobrança</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+
+<title>Cobrança</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 </head>
 <body>
 	<header layout:include="Cabecalho"></header>
@@ -18,8 +19,11 @@
 	<section layout:fragment="conteudo">
 		<p>Conteúdo principal</p>
 	</section>
-	
-  	<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
+
+	<footer>
+		<p>v0.2</p>
+	</footer>
+	<script th:src="@{/js/jquery-2.1.4.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>

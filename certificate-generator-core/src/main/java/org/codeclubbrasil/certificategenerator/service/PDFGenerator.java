@@ -9,20 +9,14 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 import org.codeclubbrasil.certificategenerator.Generator;
+import org.codeclubbrasil.certificategenerator.domain.CertificateTemplate;
 import org.codeclubbrasil.certificategenerator.domain.CodeClubClass;
-import org.codeclubbrasil.certificategenerator.domain.Template;
 import org.codeclubbrasil.certificategenerator.exception.GeneratorException;
 import org.codeclubbrasil.certificategenerator.exception.InvalidClassException;
 import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * PDF Generator
- * 
- * @author sandrogiacom@gmail.com
- *
- */
 public class PDFGenerator implements Generator {
 
 	private final static Logger log = LoggerFactory.getLogger(PDFGenerator.class);
@@ -36,7 +30,7 @@ public class PDFGenerator implements Generator {
 	}
 
 	@Override
-	public String generate(Template template, CodeClubClass codeClass)
+	public String generate(CertificateTemplate template, CodeClubClass codeClass)
 			throws GeneratorException, InvalidClassException, InvalidTemplateException {
 		validateClass(codeClass);
 		validateTemplate(template);
@@ -50,11 +44,11 @@ public class PDFGenerator implements Generator {
 	 * @param codeClass
 	 * @throws GeneratorException
 	 */
-	private String generatePdf(Template template, CodeClubClass codeClass) throws GeneratorException {
+	private String generatePdf(CertificateTemplate template, CodeClubClass codeClass) throws GeneratorException {
 		log.info("PDFGenerator.generatePdf");
-		List<String> names = codeClass.getStudents();
+		List<String> names = codeClass.getStudentsNames();
 		String outDir = getOutDir();
-		String leader = codeClass.getLeader();
+		String leader = codeClass.getLeaderName();
 
 		PDAcroForm pDAcroForm = null;
 
@@ -107,7 +101,7 @@ public class PDFGenerator implements Generator {
 		return outDir;
 	}
 
-	private void validateTemplate(Template template) throws InvalidTemplateException {
+	private void validateTemplate(CertificateTemplate template) throws InvalidTemplateException {
 		if (template == null) {
 			throw new InvalidTemplateException("Template can not be null!");
 		}
@@ -122,19 +116,15 @@ public class PDFGenerator implements Generator {
 	}
 
 	private void validateClass(CodeClubClass codeClass) throws InvalidClassException {
-
 		if (codeClass == null) {
 			throw new InvalidClassException("CodeClubClass can not be null!");
 		}
-
-		if (codeClass.getLeader() == null || codeClass.getLeader().isEmpty()) {
+		if (codeClass.getLeaderName() == null || codeClass.getLeaderName().isEmpty()) {
 			throw new InvalidClassException("Code Club Leader can not be null!");
 		}
-
-		if (codeClass.getStudents() == null || codeClass.getStudents().isEmpty()) {
+		if (codeClass.getStudentsNames() == null || codeClass.getStudentsNames().isEmpty()) {
 			throw new InvalidClassException("Code Club Students can not be null!");
 		}
-
 	}
 
 	protected static Generator getInstance() {
