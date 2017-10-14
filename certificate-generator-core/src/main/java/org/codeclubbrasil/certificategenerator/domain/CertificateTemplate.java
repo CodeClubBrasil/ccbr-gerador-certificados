@@ -33,6 +33,9 @@ public class CertificateTemplate {
 		File tempDir = new File(templateTempDir);
 		try {
 			FileUtils.forceDelete(tempDir);
+		} catch (IOException e) {
+		}
+		try {
 			FileUtils.forceMkdir(tempDir);
 		} catch (IOException e) {
 		}
