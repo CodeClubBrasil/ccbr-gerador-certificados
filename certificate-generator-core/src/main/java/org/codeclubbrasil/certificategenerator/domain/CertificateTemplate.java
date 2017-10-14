@@ -29,16 +29,20 @@ public class CertificateTemplate {
 		return template;
 	}
 
-	private static void prepateTempDir() throws IOException {
+	private static void prepateTempDir() {
 		File tempDir = new File(templateTempDir);
-		FileUtils.forceDelete(tempDir);
-		FileUtils.forceMkdir(tempDir);
+		try {
+			FileUtils.forceDelete(tempDir);
+			FileUtils.forceMkdir(tempDir);
+		} catch (IOException e) {
+		}
+
 	}
 
 	private static void saveTemplateFile(CertificateTemplate template) throws InvalidTemplateException {
 		String templateResource = "/templates/" + template.getName();
 		InputStream initialStream = template.getClass().getResourceAsStream(templateResource);
-		if(initialStream == null) {
+		if (initialStream == null) {
 			throw new InvalidTemplateException("Template Resource not found: " + templateResource);
 		}
 		String templateTempFile = templateTempDir + template.getName();
@@ -46,7 +50,7 @@ public class CertificateTemplate {
 		try {
 			java.nio.file.Files.copy(initialStream, templateFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
-			throw new InvalidTemplateException("Error on copy template to temp dir: " + templateFile ,e);
+			throw new InvalidTemplateException("Error on copy template to temp dir: " + templateFile, e);
 		}
 		IOUtils.closeQuietly(initialStream);
 	}
