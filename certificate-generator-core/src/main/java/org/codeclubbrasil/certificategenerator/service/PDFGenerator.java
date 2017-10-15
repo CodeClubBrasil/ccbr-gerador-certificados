@@ -11,6 +11,7 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 import org.codeclubbrasil.certificategenerator.Generator;
 import org.codeclubbrasil.certificategenerator.domain.CertificateTemplate;
 import org.codeclubbrasil.certificategenerator.domain.CodeClubClass;
+import org.codeclubbrasil.certificategenerator.domain.GenerateOutput;
 import org.codeclubbrasil.certificategenerator.exception.GeneratorException;
 import org.codeclubbrasil.certificategenerator.exception.InvalidClassException;
 import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateException;
@@ -30,7 +31,7 @@ public class PDFGenerator implements Generator {
 	}
 
 	@Override
-	public String generate(CertificateTemplate template, CodeClubClass codeClass)
+	public GenerateOutput generate(CertificateTemplate template, CodeClubClass codeClass)
 			throws GeneratorException, InvalidClassException, InvalidTemplateException {
 		validateClass(codeClass);
 		validateTemplate(template);
@@ -44,7 +45,7 @@ public class PDFGenerator implements Generator {
 	 * @param codeClass
 	 * @throws GeneratorException
 	 */
-	private String generatePdf(CertificateTemplate template, CodeClubClass codeClass) throws GeneratorException {
+	private GenerateOutput generatePdf(CertificateTemplate template, CodeClubClass codeClass) throws GeneratorException {
 		log.info("PDFGenerator.generatePdf");
 		List<String> names = codeClass.getStudentsNames();
 		String outDir = getOutDir();
@@ -79,9 +80,11 @@ public class PDFGenerator implements Generator {
 
 		}
 
-		log.info(names.size() + " files generated in: " + outDir);
-
-		return outDir;
+		GenerateOutput out = new GenerateOutput();
+		out.setOutputDir(outDir);
+		out.setTotalFiles(names.size());
+		
+		return out;
 
 	}
 

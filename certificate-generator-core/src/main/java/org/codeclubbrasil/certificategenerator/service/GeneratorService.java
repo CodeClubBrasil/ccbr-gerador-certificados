@@ -3,6 +3,7 @@ package org.codeclubbrasil.certificategenerator.service;
 import org.codeclubbrasil.certificategenerator.Generator;
 import org.codeclubbrasil.certificategenerator.domain.CertificateTemplate;
 import org.codeclubbrasil.certificategenerator.domain.CodeClubClass;
+import org.codeclubbrasil.certificategenerator.domain.GenerateOutput;
 import org.codeclubbrasil.certificategenerator.exception.GeneratorException;
 import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateException;
 import org.codeclubbrasil.certificategenerator.utils.ZipUtils;
@@ -13,33 +14,31 @@ public class GeneratorService {
 
 	private final static Logger log = LoggerFactory.getLogger(GeneratorService.class);
 
-	public String generate(CertificateTemplate template, CodeClubClass codeClass) throws Exception {
+	public GenerateOutput generate(CertificateTemplate template, CodeClubClass codeClass) throws Exception {
 		log.info("GeneratorService.generate");
 		Generator gen = getGenerator(template);
-		String outputDir = gen.generate(template, codeClass);
-		log.info("GeneratorService output: " + outputDir);
-		return outputDir;
+		GenerateOutput out = gen.generate(template, codeClass);
+		out.setOutputBytes(getBytesFromZip(out.getOutputDir()));
+		return out;
+	}
+	
+	public GenerateOutput generateAndZipFile(CertificateTemplate template, CodeClubClass codeClass) throws Exception {
+		log.info("GeneratorService.generateAndZipFile");
+		GenerateOutput out = generate(template, codeClass);
+		out.setOutputZipFileMame(saveZipFile(out, codeClass.getClassName()));
+		log.info("GeneratorService outputZipFileName: " + out.getOutputZipFileMame());
+		return out;
 	}
 
-	public void generateAndSaveZip(CertificateTemplate template, CodeClubClass codeClass, String zipFileName)
-			throws Exception {
-		log.info("GeneratorService.generateAndSaveZip");
-		byte[] zip = generateBytes(template, codeClass);
-		ZipUtils.saveZipFile(zip, zipFileName);
-		log.info("GeneratorService.zipFileName: " + zipFileName);
-	}
-
-	public byte[] generateBytes(CertificateTemplate template, CodeClubClass codeClass) throws Exception {
+	private byte[] getBytesFromZip(String outputDir) throws Exception {
 		log.info("GeneratorService.generateBytes");
-		return ZipUtils.zipFiles(generate(template, codeClass));
+		return ZipUtils.zipFiles(outputDir);
 	}
 
-	public String generateAndSaveZip(CertificateTemplate template, CodeClubClass codeClass) throws Exception {
-		log.info("GeneratorService.generateAndSaveZip");
-		String pdfInput = generate(template, codeClass);
-		byte[] zip = ZipUtils.zipFiles(pdfInput);
-		String zipFileName = pdfInput + codeClass.getClassName() + ".zip";
-		ZipUtils.saveZipFile(zip, zipFileName);
+	private String saveZipFile(GenerateOutput out, String fileName) throws Exception {
+		log.info("GeneratorService.saveZipFile");
+		String zipFileName = out.getOutputDir() + fileName + ".zip";
+		ZipUtils.saveZipFile(out.getOutputBytes(), zipFileName);
 		log.info("GeneratorService.zipFileName: " + zipFileName);
 		return zipFileName;
 	}
@@ -52,7 +51,7 @@ public class GeneratorService {
 		case PDF:
 			return PDFGenerator.getInstance();
 		default:
-			throw new InvalidTemplateException("TemplateType is null or invalid. Only accepts PDF type!");
+			throw new GeneratorException("TemplateType is null or invalid. Only accepts PDF type!");
 		}
 	}
 
