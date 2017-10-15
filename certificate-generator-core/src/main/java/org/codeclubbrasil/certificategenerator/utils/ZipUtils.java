@@ -21,8 +21,9 @@ public abstract class ZipUtils {
 		ByteArrayOutputStream bo = new ByteArrayOutputStream();
 		ZipOutputStream zipOut = new ZipOutputStream(bo);
 		for (File pdfFile : filesArray) {
-			if (!pdfFile.isFile())
+			if (!pdfFile.isFile()) {
 				continue;
+			}
 			ZipEntry zipEntry = new ZipEntry(pdfFile.getName());
 			zipOut.putNextEntry(zipEntry);
 			zipOut.write(IOUtils.toByteArray(new FileInputStream(pdfFile)));

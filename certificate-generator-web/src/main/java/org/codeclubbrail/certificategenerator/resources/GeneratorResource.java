@@ -8,6 +8,7 @@ import org.codeclubbrail.certificategenerator.resources.model.Certificate;
 import org.codeclubbrail.certificategenerator.resources.model.Course;
 import org.codeclubbrasil.certificategenerator.domain.CertificateTemplate;
 import org.codeclubbrasil.certificategenerator.domain.CodeClubClass;
+import org.codeclubbrasil.certificategenerator.domain.GenerateOutput;
 import org.codeclubbrasil.certificategenerator.service.GeneratorService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.core.io.InputStreamResource;
@@ -34,12 +35,12 @@ public class GeneratorResource {
 		CodeClubClass codeClass = CodeClubClass.fromClassName(certificate.getCourse());
 		codeClass.setLeaderName(certificate.getLeaderName());
 		codeClass.setStudentsNames(certificate.getStudentsNamesList());
-		String zipFile = service.generateAndSaveZip(template, codeClass);
-		InputStreamResource resource = new InputStreamResource(new FileInputStream(zipFile));
+		GenerateOutput out = service.generateAndZipFile(template, codeClass);
+		InputStreamResource resource = new InputStreamResource(new FileInputStream(out.getOutputZipFileMame()));
 
 		return ResponseEntity.ok()
 				.header("Content-Disposition", "attachment; filename=" + codeClass.getClassName() + ".zip")
-				.contentLength(new File(zipFile).length())
+				.contentLength(new File(out.getOutputZipFileMame()).length())
 				.contentType(MediaType.parseMediaType("application/octet-stream")).body(resource);
 
 	}
