@@ -1,6 +1,7 @@
 package org.codeclubbrasil.certificategenerator;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.io.File;
@@ -12,7 +13,6 @@ import org.codeclubbrasil.certificategenerator.domain.CertificateTemplate;
 import org.codeclubbrasil.certificategenerator.domain.CodeClubClass;
 import org.codeclubbrasil.certificategenerator.domain.GenerateOutput;
 import org.codeclubbrasil.certificategenerator.service.GeneratorService;
-import org.hamcrest.io.FileMatchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -113,7 +113,7 @@ public class GeneratorServiceFilesTest {
 		GenerateOutput out = service.generateAndZipFile(template, codeClass);
 		File outZip = new File(out.getOutputZipFileMame());
 		this.outDir = new File(out.getOutputDir());
-		assertThat(outZip, FileMatchers.anExistingFile());
+		assertThat(outZip.exists(), is(equalTo(true)));
 	}
 
 }
