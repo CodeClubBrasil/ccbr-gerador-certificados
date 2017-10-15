@@ -22,8 +22,8 @@ public class Course {
 		List<Course> allCources = new ArrayList<Course>();
 		allCources.add(fromData("scratch1", "Scratch 1"));
 		allCources.add(fromData("scratch2", "Scratch 2"));
-		allCources.add(fromData("phyton1", "Phyton 1"));
-		allCources.add(fromData("phyton2", "Phyton 2"));
+		allCources.add(fromData("python1", "Python 1"));
+		allCources.add(fromData("python2", "Python 2"));
 		allCources.add(fromData("web1", "Web 1"));
 		allCources.add(fromData("web2", "Web 2"));
 		return allCources;

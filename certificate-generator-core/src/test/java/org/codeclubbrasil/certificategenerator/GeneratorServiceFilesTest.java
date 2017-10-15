@@ -44,20 +44,20 @@ public class GeneratorServiceFilesTest {
 	}
 
 	@Test()
-	public void whenDataOkThenGeneratePhyton1() throws Exception {
-		String templateName = "phyton1";
+	public void whenDataOkThenGeneratepython1() throws Exception {
+		String templateName = "python1";
 		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("FERNANDO CORRÊA RODRIGUES DOS SANTOS",
 				"GUILHERME HANDRYCH DE SOUZA ALVES");
-		assertTrue(callGenerate("Phyton1", templateName, leader, students));
+		assertTrue(callGenerate("python1", templateName, leader, students));
 	}
 
 	@Test()
-	public void whenDataOkThenGeneratePhyton2() throws Exception {
-		String templateName = "phyton2";
+	public void whenDataOkThenGeneratepython2() throws Exception {
+		String templateName = "python2";
 		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("RAFAEL PONTES STENGER", "LARISSA MARTINS DO AMARAL");
-		assertTrue(callGenerate("Phyton2", templateName, leader, students));
+		assertTrue(callGenerate("python2", templateName, leader, students));
 	}
 
 	@Test()
