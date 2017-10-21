@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.codeclubbrasil.certificategenerator.domain.AvailableCourse;
 import org.codeclubbrasil.certificategenerator.domain.CertificateTemplate;
 import org.codeclubbrasil.certificategenerator.domain.CodeClubClass;
 import org.codeclubbrasil.certificategenerator.domain.GenerateOutput;
@@ -21,6 +22,8 @@ public class GeneratorServiceFilesTest {
 
 	private File outDir;
 
+	private static final String leader = "Sandro Giacomozzi";
+
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -32,64 +35,53 @@ public class GeneratorServiceFilesTest {
 
 	@Test()
 	public void whenDataOkThenGenerateScratch1() throws Exception {
-		String templateName = "scratch1";
-		String leader = "Sandro Giacomozzi";
 		List<String> students = Arrays.asList("ADRIANA KRUGER GIACOMOZZI", "ISABELA KRUGER GIACOMOZZI");
-		callGenerate("Scratch1", templateName, leader, students);
+		callGenerate(AvailableCourse.SCRATCH1.getName(), AvailableCourse.SCRATCH1.getCode(), leader, students);
 	}
 
 	@Test()
 	public void whenDataOkThenGenerateScratch2() throws Exception {
-		String templateName = "scratch2";
-		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("ARTHUR SCHRAMM DE LIMA", "EVILYN BIANCA DE PAULA JUNG");
-		callGenerate("Scratch2", templateName, leader, students);
+		callGenerate(AvailableCourse.SCRATCH2.getName(), AvailableCourse.SCRATCH2.getCode(), leader, students);
+
 	}
 
 	@Test()
 	public void whenDataOkThenGeneratePython1() throws Exception {
-		String templateName = "python1";
-		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("FERNANDO CORRÊA RODRIGUES DOS SANTOS",
 				"GUILHERME HANDRYCH DE SOUZA ALVES");
-		callGenerate("Python1", templateName, leader, students);
+		callGenerate(AvailableCourse.PYTHON1.getName(), AvailableCourse.PYTHON1.getCode(), leader, students);
+
 	}
 
 	@Test()
 	public void whenDataOkThenGeneratePython2() throws Exception {
-		String templateName = "python2";
-		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("RAFAEL PONTES STENGER", "LARISSA MARTINS DO AMARAL");
-		callGenerate("Python2", templateName, leader, students);
+		callGenerate(AvailableCourse.PYTHON2.getName(), AvailableCourse.PYTHON2.getCode(), leader, students);
+
 	}
 
 	@Test()
 	public void whenDataOkThenGenerateWeb1() throws Exception {
-		String templateName = "web1";
-		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("WENDELL KAWE SAMPAIO DE SOUZA", "RICHARD PAULINO DA SILVA");
-		callGenerate("Web1", templateName, leader, students);
+		callGenerate(AvailableCourse.WEB1.getName(), AvailableCourse.WEB1.getCode(), leader, students);
+
 	}
 
 	@Test()
 	public void whenDataOkThenGenerateWeb2() throws Exception {
-		String templateName = "web2";
-		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("TAMARIS DA SILVA DE CARVALHO", "CAROLINA FORTUNATO DA LUZ",
 				"RICHARD YAGO SAMPAIO DE SOUZA");
-		callGenerate("Web2", templateName, leader, students);
+		callGenerate(AvailableCourse.WEB2.getName(), AvailableCourse.WEB2.getCode(), leader, students);
+
 	}
 
-	
 	@Test()
 	public void whenDataOkThenGenerateZipWeb2() throws Exception {
-		String templateName = "web2";
-		String leader = "Sandro Luciano Giacomozzi";
 		List<String> students = Arrays.asList("TAMARIS DA SILVA DE CARVALHO", "CAROLINA FORTUNATO DA LUZ",
 				"RICHARD YAGO SAMPAIO DE SOUZA");
-		callGenerateAndZip("Web2", templateName, leader, students);
+		callGenerateAndZip(AvailableCourse.WEB2.getName(), AvailableCourse.WEB2.getCode(), leader, students);
 	}
-
 
 	private void callGenerate(String className, String templateName, String leader, List<String> students)
 			throws Exception {
@@ -103,7 +95,7 @@ public class GeneratorServiceFilesTest {
 		assertThat(outDir.list().length, equalTo(codeClass.getStudentsNames().size()));
 	}
 
-	private void callGenerateAndZip(String className, String templateName, String leader, List<String> students) 
+	private void callGenerateAndZip(String className, String templateName, String leader, List<String> students)
 			throws Exception {
 		GeneratorService service = new GeneratorService();
 		CertificateTemplate template = CertificateTemplate.fromTemplateNamePDF(templateName);
