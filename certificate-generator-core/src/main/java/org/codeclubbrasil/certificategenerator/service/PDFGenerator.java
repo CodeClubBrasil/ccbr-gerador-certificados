@@ -71,7 +71,7 @@ public class PDFGenerator implements Generator {
 				String aluno = names.get(i);
 				field = pDAcroForm.getField("txt_aluno");
 				field.setValue(aluno);
-				pDAcroForm.flatten();
+//				pDAcroForm.flatten();
 				pDDocument.save(outDir + aluno + ".pdf");
 				pDDocument.close();
 			} catch (IOException e) {
