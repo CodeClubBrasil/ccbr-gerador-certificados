@@ -6,9 +6,11 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum TemplateType {
 
-	PDF(".pdf"), DOC(".doc"), XLS(".xls");
+    PDF(".pdf"),
+    DOC(".doc"),
+    XLS(".xls");
 
-	@Getter
-	private String extension;
+    @Getter
+    private String extension;
 
 }

@@ -14,30 +14,30 @@ import org.slf4j.LoggerFactory;
 
 public abstract class ZipUtils {
 
-	private final static Logger log = LoggerFactory.getLogger(ZipUtils.class);
+    private final static Logger log = LoggerFactory.getLogger(ZipUtils.class);
 
-	public static byte[] zipFiles(String inputputDir) throws IOException {
-		File[] filesArray = new File(inputputDir).listFiles();
-		ByteArrayOutputStream bo = new ByteArrayOutputStream();
-		ZipOutputStream zipOut = new ZipOutputStream(bo);
-		for (File pdfFile : filesArray) {
-			if (!pdfFile.isFile()) {
-				continue;
-			}
-			ZipEntry zipEntry = new ZipEntry(pdfFile.getName());
-			zipOut.putNextEntry(zipEntry);
-			zipOut.write(IOUtils.toByteArray(new FileInputStream(pdfFile)));
-			zipOut.closeEntry();
-		}
+    public static byte[] zipFiles(String inputputDir) throws IOException {
+        File[] filesArray = new File(inputputDir).listFiles();
+        ByteArrayOutputStream bo = new ByteArrayOutputStream();
+        ZipOutputStream zipOut = new ZipOutputStream(bo);
+        for (File pdfFile : filesArray) {
+            if (!pdfFile.isFile()) {
+                continue;
+            }
+            ZipEntry zipEntry = new ZipEntry(pdfFile.getName());
+            zipOut.putNextEntry(zipEntry);
+            zipOut.write(IOUtils.toByteArray(new FileInputStream(pdfFile)));
+            zipOut.closeEntry();
+        }
 
-		zipOut.close();
-		return bo.toByteArray();
+        zipOut.close();
+        return bo.toByteArray();
 
-	}
+    }
 
-	public static void saveZipFile(byte[] zipArray, String zipFileName) throws IOException {
-		FileUtils.writeByteArrayToFile(new File(zipFileName), zipArray);
-		log.info("zip file saved in: " + zipFileName);
-	}
+    public static void saveZipFile(byte[] zipArray, String zipFileName) throws IOException {
+        FileUtils.writeByteArrayToFile(new File(zipFileName), zipArray);
+        log.info("zip file saved in: " + zipFileName);
+    }
 
 }

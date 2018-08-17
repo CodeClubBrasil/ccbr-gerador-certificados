@@ -9,7 +9,7 @@ import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateExceptio
 
 public interface Generator {
 
-	GenerateOutput generate(CertificateTemplate template, CodeClubClass codeClass)
-			throws GeneratorException, InvalidClassException, InvalidTemplateException;
+    GenerateOutput generate(CertificateTemplate template, CodeClubClass codeClass)
+            throws GeneratorException, InvalidClassException, InvalidTemplateException;
 
 }

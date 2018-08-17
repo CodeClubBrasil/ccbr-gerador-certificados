@@ -7,10 +7,9 @@ import org.junit.Test;
 
 public class GeneratorServiceTest {
 
-	@Test(expected = InvalidTemplateException.class)
-	public void whenTemplateIsNullThenException() throws Exception {
-		new GeneratorService().generate(null, CodeClubClass.fromClassName("test"));
-	}
+    @Test(expected = InvalidTemplateException.class)
+    public void whenTemplateIsNullThenException() throws Exception {
+        new GeneratorService().generate(null, CodeClubClass.fromClassName("test"));
+    }
 
-	
 }
