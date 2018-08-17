@@ -8,13 +8,13 @@ https://certificategenerator.herokuapp.com/
 mvn clean install
 
 ##Build image:
-docker build --force-rm -t brcodeclub/certificate-generator:latest .
+docker build --force-rm -t codeclubbrasil/gerador-certificados .
 
 ##Run:
-docker run -p 8080:8080 brcodeclub/certificate-generator:latest
+docker run -p 8080:8080 codeclubbrasil/gerador-certificados
 
 ##Access:
 http://localhost:8080/
 
 ##Docker Hub:
-https://hub.docker.com/r/brcodeclub/certificate-generator/
+https://hub.docker.com/r/codeclubbrasil/gerador-certificados/
