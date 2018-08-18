@@ -3,10 +3,10 @@ package org.codeclubbrasil.certificategenerator.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 /**
  * Certificados disponiveis
  */
+@AllArgsConstructor
 public enum AvailableCourse {
 
     PYTHON1("python1", "Python 1"),
@@ -17,15 +17,16 @@ public enum AvailableCourse {
     WEB1("web1", "Web 1"),
     WEB2("web2", "Web 2");
 
-    @Getter
     /**
      * Código do certificado
      */
-    private String code;
     @Getter
+    private String code;
+
     /**
      * Nome do certificado
      */
+    @Getter
     private String name;
 
 }
