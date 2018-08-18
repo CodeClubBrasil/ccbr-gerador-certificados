@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
+/**
+ * Certificados disponiveis
+ */
 public enum AvailableCourse {
 
     PYTHON1("python1", "Python 1"),
@@ -15,8 +18,14 @@ public enum AvailableCourse {
     WEB2("web2", "Web 2");
 
     @Getter
-    String code;
+    /**
+     * Código do certificado
+     */
+    private String code;
     @Getter
-    String name;
+    /**
+     * Nome do certificado
+     */
+    private String name;
 
 }

@@ -12,10 +12,19 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Classe utilitaria para compactação de arquivos
+ */
 public abstract class ZipUtils {
 
-    private final static Logger log = LoggerFactory.getLogger(ZipUtils.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ZipUtils.class);
 
+    /**
+     * Compacta arquivos de uma determinada pasta
+     * @param inputputDir String
+     * @return byte[]
+     * @throws IOException
+     */
     public static byte[] zipFiles(String inputputDir) throws IOException {
         File[] filesArray = new File(inputputDir).listFiles();
         ByteArrayOutputStream bo = new ByteArrayOutputStream();
@@ -40,7 +49,7 @@ public abstract class ZipUtils {
 
     public static void saveZipFile(byte[] zipArray, String zipFileName) throws IOException {
         FileUtils.writeByteArrayToFile(new File(zipFileName), zipArray);
-        log.info("zip file saved in: " + zipFileName);
+        LOG.info("zip file saved in: " + zipFileName);
     }
 
 }

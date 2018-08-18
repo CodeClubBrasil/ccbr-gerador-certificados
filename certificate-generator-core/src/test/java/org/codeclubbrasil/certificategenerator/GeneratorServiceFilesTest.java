@@ -18,9 +18,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Generator service test
+ */
 public class GeneratorServiceFilesTest {
 
-    private static final String leader = "Sandro Giacomozzi";
+    private static final String LEADER = "Sandro Giacomozzi";
     private File outDir;
 
     @Before
@@ -35,13 +38,13 @@ public class GeneratorServiceFilesTest {
     @Test()
     public void whenDataOkThenGenerateScratch1() throws Exception {
         List<String> students = Arrays.asList("ADRIANA KRUGER GIACOMOZZI", "ISABELA KRUGER GIACOMOZZI");
-        callGenerate(AvailableCourse.SCRATCH1.getName(), AvailableCourse.SCRATCH1.getCode(), leader, students);
+        callGenerate(AvailableCourse.SCRATCH1.getName(), AvailableCourse.SCRATCH1.getCode(), LEADER, students);
     }
 
     @Test()
     public void whenDataOkThenGenerateScratch2() throws Exception {
         List<String> students = Arrays.asList("ARTHUR SCHRAMM DE LIMA", "EVILYN BIANCA DE PAULA JUNG");
-        callGenerate(AvailableCourse.SCRATCH2.getName(), AvailableCourse.SCRATCH2.getCode(), leader, students);
+        callGenerate(AvailableCourse.SCRATCH2.getName(), AvailableCourse.SCRATCH2.getCode(), LEADER, students);
 
     }
 
@@ -49,37 +52,37 @@ public class GeneratorServiceFilesTest {
     public void whenDataOkThenGeneratePython1() throws Exception {
         List<String> students = Arrays.asList("FERNANDO CORRÊA RODRIGUES DOS SANTOS",
                 "GUILHERME HANDRYCH DE SOUZA ALVES");
-        callGenerate(AvailableCourse.PYTHON1.getName(), AvailableCourse.PYTHON1.getCode(), leader, students);
+        callGenerate(AvailableCourse.PYTHON1.getName(), AvailableCourse.PYTHON1.getCode(), LEADER, students);
 
     }
 
     @Test()
     public void whenDataOkThenGeneratePython2() throws Exception {
         List<String> students = Arrays.asList("RAFAEL PONTES STENGER", "LARISSA MARTINS DO AMARAL");
-        callGenerate(AvailableCourse.PYTHON2.getName(), AvailableCourse.PYTHON2.getCode(), leader, students);
+        callGenerate(AvailableCourse.PYTHON2.getName(), AvailableCourse.PYTHON2.getCode(), LEADER, students);
 
     }
 
     @Test()
     public void whenDataOkThenGenerateWeb1() throws Exception {
         List<String> students = Arrays.asList("WENDELL KAWE SAMPAIO DE SOUZA", "RICHARD PAULINO DA SILVA");
-        callGenerate(AvailableCourse.WEB1.getName(), AvailableCourse.WEB1.getCode(), leader, students);
+        callGenerate(AvailableCourse.WEB1.getName(), AvailableCourse.WEB1.getCode(), LEADER, students);
 
     }
 
     @Test()
     public void whenDataOkThenGenerateWeb2() throws Exception {
-        List<String> students = Arrays.asList("TAMARIS DA SILVA DE CARVALHO", "CAROLINA FORTUNATO DA LUZ",
-                "RICHARD YAGO SAMPAIO DE SOUZA");
-        callGenerate(AvailableCourse.WEB2.getName(), AvailableCourse.WEB2.getCode(), leader, students);
+        List<String> students = Arrays.asList("TAMARIS DA SILVA", "CAROLINA DA LUZ",
+                "RICHARD YAGO");
+        callGenerate(AvailableCourse.WEB2.getName(), AvailableCourse.WEB2.getCode(), LEADER, students);
 
     }
 
     @Test()
     public void whenDataOkThenGenerateZipWeb2() throws Exception {
-        List<String> students = Arrays.asList("TAMARIS DA SILVA DE CARVALHO", "CAROLINA FORTUNATO DA LUZ",
-                "RICHARD YAGO SAMPAIO DE SOUZA");
-        callGenerateAndZip(AvailableCourse.WEB2.getName(), AvailableCourse.WEB2.getCode(), leader, students);
+        List<String> students = Arrays.asList("TAMARIS DA DE CARVALHO", "CAROLINA FORTUNATO DA LUZ",
+                "RICHARD DE SOUZA");
+        callGenerateAndZip(AvailableCourse.WEB2.getName(), AvailableCourse.WEB2.getCode(), LEADER, students);
     }
 
     private void callGenerate(String className, String templateName, String leader, List<String> students)

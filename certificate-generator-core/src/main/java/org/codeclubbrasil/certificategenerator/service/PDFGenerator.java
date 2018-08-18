@@ -18,9 +18,12 @@ import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateExceptio
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PDFGenerator implements Generator {
+/**
+ * Gerador de PDF
+ */
+public final class PDFGenerator implements Generator {
 
-    private final static Logger log = LoggerFactory.getLogger(PDFGenerator.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PDFGenerator.class);
     private static final String TEMP_DIR = System.getProperty("java.io.tmpdir");
     private static final String GENERATE_DIR = "/pdfgenerador";
     private static PDFGenerator instance;
@@ -51,7 +54,7 @@ public class PDFGenerator implements Generator {
      * @throws GeneratorException
      */
     private GenerateOutput generatePdf(CertificateTemplate template, CodeClubClass codeClass) throws GeneratorException {
-        log.info("PDFGenerator.generatePdf");
+        LOG.info("PDFGenerator.generatePdf");
         List<String> names = codeClass.getStudentsNames();
         String outDir = getOutDir();
         String leader = codeClass.getLeaderName();
@@ -63,7 +66,7 @@ public class PDFGenerator implements Generator {
         for (int i = 0; i < names.size(); i++) {
             PDDocument pDDocument;
             try {
-                log.info("Using template: " + template.getAbsolutePath());
+                LOG.info("Using template: " + template.getAbsolutePath());
                 pDDocument = PDDocument.load(new File(template.getAbsolutePath()));
             } catch (IOException e) {
                 throw new GeneratorException("Error on load document template", e);
@@ -76,7 +79,6 @@ public class PDFGenerator implements Generator {
                 String aluno = names.get(i);
                 field = pDAcroForm.getField("txt_aluno");
                 field.setValue(aluno);
-                //				pDAcroForm.flatten();
                 pDDocument.save(outDir + aluno + ".pdf");
                 pDDocument.close();
             } catch (IOException e) {
@@ -97,15 +99,15 @@ public class PDFGenerator implements Generator {
         String outDir = null;
         try {
             String path = new File(TEMP_DIR).getAbsolutePath();
-            log.info("path = " + path);
+            LOG.info("path = " + path);
             File out = new File(path + GENERATE_DIR);
-            log.info("out = " + out);
+            LOG.info("out = " + out);
             FileUtils.deleteDirectory(out);
             out.mkdir();
             outDir = out.getAbsolutePath() + File.separator;
-            log.info("outDir = " + outDir);
+            LOG.info("outDir = " + outDir);
         } catch (Exception e) {
-            log.error(e.toString());
+            LOG.error(e.toString());
         }
         return outDir;
     }

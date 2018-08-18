@@ -10,12 +10,15 @@ import org.codeclubbrasil.certificategenerator.utils.ZipUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Serviço gerador de certificados
+ */
 public class GeneratorService {
 
-    private final static Logger log = LoggerFactory.getLogger(GeneratorService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GeneratorService.class);
 
     public GenerateOutput generate(CertificateTemplate template, CodeClubClass codeClass) throws Exception {
-        log.info("GeneratorService.generate");
+        LOG.info("GeneratorService.generate");
         Generator gen = getGenerator(template);
         GenerateOutput out = gen.generate(template, codeClass);
         out.setOutputBytes(getBytesFromZip(out.getOutputDir()));
@@ -23,23 +26,23 @@ public class GeneratorService {
     }
 
     public GenerateOutput generateAndZipFile(CertificateTemplate template, CodeClubClass codeClass) throws Exception {
-        log.info("GeneratorService.generateAndZipFile");
+        LOG.info("GeneratorService.generateAndZipFile");
         GenerateOutput out = generate(template, codeClass);
         out.setOutputZipFileMame(saveZipFile(out, codeClass.getClassName()));
-        log.info("GeneratorService outputZipFileName: " + out.getOutputZipFileMame());
+        LOG.info("GeneratorService outputZipFileName: " + out.getOutputZipFileMame());
         return out;
     }
 
     private byte[] getBytesFromZip(String outputDir) throws Exception {
-        log.info("GeneratorService.generateBytes");
+        LOG.info("GeneratorService.generateBytes");
         return ZipUtils.zipFiles(outputDir);
     }
 
     private String saveZipFile(GenerateOutput out, String fileName) throws Exception {
-        log.info("GeneratorService.saveZipFile");
+        LOG.info("GeneratorService.saveZipFile");
         String zipFileName = out.getOutputDir() + fileName + ".zip";
         ZipUtils.saveZipFile(out.getOutputBytes(), zipFileName);
-        log.info("GeneratorService.zipFileName: " + zipFileName);
+        LOG.info("GeneratorService.zipFileName: " + zipFileName);
         return zipFileName;
     }
 

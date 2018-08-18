@@ -11,8 +11,11 @@ import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateExceptio
 
 import lombok.Data;
 
+/**
+ * Responsavel por processar o arquivo de template
+ */
 @Data
-public class CertificateTemplate {
+public final class CertificateTemplate {
 
     private static final String templateTempDir = System.getProperty("java.io.tmpdir") + "/pdf/";
     private String name;
@@ -67,3 +70,4 @@ public class CertificateTemplate {
     }
 
 }
+

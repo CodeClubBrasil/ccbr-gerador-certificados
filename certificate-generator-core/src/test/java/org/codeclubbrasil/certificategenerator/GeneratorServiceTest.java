@@ -5,6 +5,9 @@ import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateExceptio
 import org.codeclubbrasil.certificategenerator.service.GeneratorService;
 import org.junit.Test;
 
+/**
+ * Testes no gerador
+ */
 public class GeneratorServiceTest {
 
     @Test(expected = InvalidTemplateException.class)
