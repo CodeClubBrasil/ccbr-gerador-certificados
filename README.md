@@ -1,20 +1,20 @@
 # Gerador de Certificados
 Gerador de Certificados Code Club Brasil
 
-#Demo app:
+# Demo app:
 https://certificategenerator.herokuapp.com/
 
-##Build:
+## Build:
 mvn clean install
 
-##Build image:
+## Build image:
 docker build --force-rm -t codeclubbrasil/gerador-certificados .
 
-##Run:
+## Run:
 docker run -p 8080:8080 codeclubbrasil/gerador-certificados
 
-##Access:
+## Access:
 http://localhost:8080/
 
-##Docker Hub:
+## Docker Hub:
 https://hub.docker.com/r/codeclubbrasil/gerador-certificados/
