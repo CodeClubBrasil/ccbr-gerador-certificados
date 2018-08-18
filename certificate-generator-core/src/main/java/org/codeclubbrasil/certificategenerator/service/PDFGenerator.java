@@ -28,7 +28,7 @@ public class PDFGenerator implements Generator {
     private PDFGenerator() {
     }
 
-    protected static Generator getInstance() {
+    static Generator getInstance() {
         if (instance == null) {
             return new PDFGenerator();
         }
@@ -105,6 +105,7 @@ public class PDFGenerator implements Generator {
             outDir = out.getAbsolutePath() + File.separator;
             log.info("outDir = " + outDir);
         } catch (Exception e) {
+            log.error(e.toString());
         }
         return outDir;
     }

@@ -20,6 +20,9 @@ public abstract class ZipUtils {
         File[] filesArray = new File(inputputDir).listFiles();
         ByteArrayOutputStream bo = new ByteArrayOutputStream();
         ZipOutputStream zipOut = new ZipOutputStream(bo);
+        if (filesArray == null) {
+            return bo.toByteArray();
+        }
         for (File pdfFile : filesArray) {
             if (!pdfFile.isFile()) {
                 continue;
