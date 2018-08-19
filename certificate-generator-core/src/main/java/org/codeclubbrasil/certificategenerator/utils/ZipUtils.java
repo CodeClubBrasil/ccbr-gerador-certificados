@@ -12,19 +12,10 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Classe utilitaria para compactação de arquivos
- */
 public abstract class ZipUtils {
 
     private static final Logger LOG = LoggerFactory.getLogger(ZipUtils.class);
 
-    /**
-     * Compacta arquivos de uma determinada pasta
-     * @param inputputDir String
-     * @return byte[]
-     * @throws IOException
-     */
     public static byte[] zipFiles(String inputputDir) throws IOException {
         File[] filesArray = new File(inputputDir).listFiles();
         ByteArrayOutputStream bo = new ByteArrayOutputStream();

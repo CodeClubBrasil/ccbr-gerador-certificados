@@ -11,9 +11,6 @@ import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateExceptio
 
 import lombok.Data;
 
-/**
- * Responsavel por processar o arquivo de template
- */
 @Data
 public final class CertificateTemplate {
 
@@ -26,12 +23,6 @@ public final class CertificateTemplate {
         this.type = type;
     }
 
-    /**
-     * Obtem o template do certificado conforme seu nome
-     * @param name String
-     * @return CertificateTemplate
-     * @throws Exception
-     */
     public static CertificateTemplate fromTemplateNamePDF(String name) throws Exception {
         TemplateType templateType = TemplateType.PDF;
         CertificateTemplate template = new CertificateTemplate(templateType);
@@ -71,13 +62,8 @@ public final class CertificateTemplate {
         IOUtils.closeQuietly(initialStream);
     }
 
-    /**
-     * Obtem o caminho do tamplate
-     * @return String
-     */
     public String getAbsolutePath() {
         return path + File.separator + name;
     }
 
 }
-

@@ -10,9 +10,6 @@ import org.codeclubbrasil.certificategenerator.utils.ZipUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Serviço gerador de certificados
- */
 public class GeneratorService {
 
     private static final Logger LOG = LoggerFactory.getLogger(GeneratorService.class);
