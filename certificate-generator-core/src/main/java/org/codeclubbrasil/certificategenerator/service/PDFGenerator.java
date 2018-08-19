@@ -18,9 +18,6 @@ import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateExceptio
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Gerador de PDF
- */
 public final class PDFGenerator implements Generator {
 
     private static final Logger LOG = LoggerFactory.getLogger(PDFGenerator.class);
@@ -33,7 +30,7 @@ public final class PDFGenerator implements Generator {
 
     static Generator getInstance() {
         if (instance == null) {
-            return new PDFGenerator();
+            instance = new PDFGenerator();
         }
         return instance;
     }
@@ -59,9 +56,9 @@ public final class PDFGenerator implements Generator {
         String outDir = getOutDir();
         String leader = codeClass.getLeaderName();
 
-        PDAcroForm pDAcroForm = null;
+        PDAcroForm pDAcroForm;
 
-        PDField field = null;
+        PDField field;
 
         for (int i = 0; i < names.size(); i++) {
             PDDocument pDDocument;
@@ -95,20 +92,20 @@ public final class PDFGenerator implements Generator {
 
     }
 
-    private String getOutDir() {
-        String outDir = null;
+    private String getOutDir() throws GeneratorException {
+        String outDir;
+        String path = new File(TEMP_DIR).getAbsolutePath();
+        LOG.info("path = " + path);
+        File out = new File(path + GENERATE_DIR);
+        LOG.info("out = " + out);
         try {
-            String path = new File(TEMP_DIR).getAbsolutePath();
-            LOG.info("path = " + path);
-            File out = new File(path + GENERATE_DIR);
-            LOG.info("out = " + out);
             FileUtils.deleteDirectory(out);
-            out.mkdir();
-            outDir = out.getAbsolutePath() + File.separator;
-            LOG.info("outDir = " + outDir);
-        } catch (Exception e) {
-            LOG.error(e.toString());
+        } catch (IOException e) {
+            throw new GeneratorException(e.getMessage(), e);
         }
+        out.mkdir();
+        outDir = out.getAbsolutePath() + File.separator;
+        LOG.info("outDir = " + outDir);
         return outDir;
     }
 

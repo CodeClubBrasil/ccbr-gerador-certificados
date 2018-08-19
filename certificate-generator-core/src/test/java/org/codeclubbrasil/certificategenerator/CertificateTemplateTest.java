@@ -13,8 +13,8 @@ import org.junit.Test;
 
 public class CertificateTemplateTest {
 
-    private static final String templateTempDir = System.getProperty("java.io.tmpdir") + "/pdf/";
-    CertificateTemplate template = null;
+    private static final String TEMPLATE_TEMP_DIR = System.getProperty("java.io.tmpdir") + "/pdf/";
+    private CertificateTemplate template;
 
     @Before
     public void setUp() throws Exception {
@@ -43,7 +43,7 @@ public class CertificateTemplateTest {
 
     @Test
     public void testGetPath() {
-        assertThat(template.getPath(), is(equalTo(templateTempDir)));
+        assertThat(template.getPath(), is(equalTo(TEMPLATE_TEMP_DIR)));
     }
 
     @Test

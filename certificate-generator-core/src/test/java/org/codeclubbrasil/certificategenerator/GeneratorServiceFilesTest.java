@@ -15,20 +15,12 @@ import org.codeclubbrasil.certificategenerator.domain.CodeClubClass;
 import org.codeclubbrasil.certificategenerator.domain.GenerateOutput;
 import org.codeclubbrasil.certificategenerator.service.GeneratorService;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Generator service test
- */
 public class GeneratorServiceFilesTest {
 
     private static final String LEADER = "Sandro Giacomozzi";
     private File outDir;
-
-    @Before
-    public void setUp() throws Exception {
-    }
 
     @After
     public void cleanUp() throws Exception {

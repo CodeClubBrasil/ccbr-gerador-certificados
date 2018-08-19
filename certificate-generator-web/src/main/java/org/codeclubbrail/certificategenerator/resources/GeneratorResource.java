@@ -11,7 +11,6 @@ import org.codeclubbrasil.certificategenerator.domain.GenerateOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -31,7 +30,7 @@ public class GeneratorResource {
     private GeneratorServiceWeb generatorService;
 
     @PostMapping(path = "/generate")
-    public ResponseEntity<Resource> generate(Certificate certificate) throws Exception {
+    public ResponseEntity<InputStreamResource> generate(Certificate certificate) throws Exception {
         GenerateOutput out = generatorService.generate(certificate);
         InputStreamResource resource = new InputStreamResource(new FileInputStream(out.getOutputZipFileMame()));
         return ResponseEntity.ok()
