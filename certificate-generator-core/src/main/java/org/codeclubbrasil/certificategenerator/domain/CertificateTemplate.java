@@ -12,58 +12,58 @@ import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateExceptio
 import lombok.Data;
 
 @Data
-public class CertificateTemplate {
+public final class CertificateTemplate {
 
-	private static final String templateTempDir = System.getProperty("java.io.tmpdir") + "/pdf/";
-	private String name;
-	private String path;
-	private TemplateType type;
+    private static final String TEMPLATE_TEMP_DIR = System.getProperty("java.io.tmpdir") + "/pdf/";
+    private String name;
+    private String path;
+    private TemplateType type;
 
-	public static CertificateTemplate fromTemplateNamePDF(String name) throws Exception {
-		TemplateType templateType = TemplateType.PDF;
-		CertificateTemplate template = new CertificateTemplate(templateType);
-		template.setName(name + templateType.getExtension());
-		template.setPath(templateTempDir);
-		prepateTempDir();
-		saveTemplateFile(template);
-		return template;
-	}
+    private CertificateTemplate(TemplateType type) {
+        this.type = type;
+    }
 
-	private static void prepateTempDir() {
-		File tempDir = new File(templateTempDir);
-		try {
-			FileUtils.forceDelete(tempDir);
-		} catch (IOException e) {
-		}
-		try {
-			FileUtils.forceMkdir(tempDir);
-		} catch (IOException e) {
-		}
+    public static CertificateTemplate fromTemplateNamePDF(String name) throws Exception {
+        TemplateType templateType = TemplateType.PDF;
+        CertificateTemplate template = new CertificateTemplate(templateType);
+        template.setName(name + templateType.getExtension());
+        template.setPath(TEMPLATE_TEMP_DIR);
+        prepateTempDir();
+        saveTemplateFile(template);
+        return template;
+    }
 
-	}
+    private static void prepateTempDir() {
+        File tempDir = new File(TEMPLATE_TEMP_DIR);
+        try {
+            FileUtils.forceDelete(tempDir);
+        } catch (IOException e) {
+        }
+        try {
+            FileUtils.forceMkdir(tempDir);
+        } catch (IOException e) {
+        }
 
-	private static void saveTemplateFile(CertificateTemplate template) throws InvalidTemplateException {
-		String templateResource = "/templates/" + template.getName();
-		InputStream initialStream = template.getClass().getResourceAsStream(templateResource);
-		if (initialStream == null) {
-			throw new InvalidTemplateException("Template Resource not found: " + templateResource);
-		}
-		String templateTempFile = templateTempDir + template.getName();
-		File templateFile = new File(templateTempFile);
-		try {
-			java.nio.file.Files.copy(initialStream, templateFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-		} catch (IOException e) {
-			throw new InvalidTemplateException("Error on copy template to temp dir: " + templateFile, e);
-		}
-		IOUtils.closeQuietly(initialStream);
-	}
+    }
 
-	private CertificateTemplate(TemplateType type) {
-		this.type = type;
-	}
+    private static void saveTemplateFile(CertificateTemplate template) throws InvalidTemplateException {
+        String templateResource = "/templates/" + template.getName();
+        InputStream initialStream = template.getClass().getResourceAsStream(templateResource);
+        if (initialStream == null) {
+            throw new InvalidTemplateException("Template Resource not found: " + templateResource);
+        }
+        String templateTempFile = TEMPLATE_TEMP_DIR + template.getName();
+        File templateFile = new File(templateTempFile);
+        try {
+            java.nio.file.Files.copy(initialStream, templateFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new InvalidTemplateException("Error on copy template to temp dir: " + templateFile, e);
+        }
+        IOUtils.closeQuietly(initialStream);
+    }
 
-	public String getAbsolutePath() {
-		return path + File.separator + name;
-	}
+    public String getAbsolutePath() {
+        return path + File.separator + name;
+    }
 
 }

@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GeneratorServiceWeb {
-	
-	public GenerateOutput generate(Certificate certificate) throws Exception {
-		GeneratorService service = new GeneratorService();
-		CertificateTemplate template = CertificateTemplate.fromTemplateNamePDF(certificate.getCourse());
-		CodeClubClass codeClass = CodeClubClass.fromClassName(certificate.getCourse());
-		codeClass.setLeaderName(certificate.getLeaderName());
-		codeClass.setStudentsNames(certificate.getStudentsNamesList());
-		GenerateOutput out = service.generateAndZipFile(template, codeClass);
-		return out;
-	}
+
+    public GenerateOutput generate(Certificate certificate) throws Exception {
+        GeneratorService service = new GeneratorService();
+        CertificateTemplate template = CertificateTemplate.fromTemplateNamePDF(certificate.getCourse());
+        CodeClubClass codeClass = CodeClubClass.fromClassName(certificate.getCourse());
+        codeClass.setLeaderName(certificate.getLeaderName());
+        codeClass.setStudentsNames(certificate.getStudentsNamesList());
+        GenerateOutput out = service.generateAndZipFile(template, codeClass);
+        return out;
+    }
 
 }
