@@ -8,14 +8,13 @@ import lombok.Data;
 @Data
 public class Certificate {
 
-	private String leaderName;
-	private String students;
-	private String course;
+    private String leaderName;
+    private String students;
+    private String course;
 
-	public List<String> getStudentsNamesList() {
-		setStudents(getStudents().replaceAll("\n", ";"));
-		setStudents(getStudents().replaceAll("\r", ""));
-		List<String> students = Arrays.asList(getStudents().split(";"));
-		return students;
-	}
+    public List<String> getStudentsNamesList() {
+        setStudents(getStudents().replaceAll("\n", ";"));
+        setStudents(getStudents().replaceAll("\r", ""));
+        return Arrays.asList(getStudents().split(";"));
+    }
 }

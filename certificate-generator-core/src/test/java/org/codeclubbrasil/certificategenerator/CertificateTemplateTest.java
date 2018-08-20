@@ -13,54 +13,53 @@ import org.junit.Test;
 
 public class CertificateTemplateTest {
 
-	CertificateTemplate template = null;
+    private static final String TEMPLATE_TEMP_DIR = System.getProperty("java.io.tmpdir") + "/pdf/";
+    private CertificateTemplate template;
 
-	private static final String templateTempDir = System.getProperty("java.io.tmpdir") + "/pdf/";
+    @Before
+    public void setUp() throws Exception {
+        template = CertificateTemplate.fromTemplateNamePDF("web1");
+    }
 
-	@Before
-	public void setUp() throws Exception {
-		template = CertificateTemplate.fromTemplateNamePDF("web1");
-	}
+    @Test
+    public void testHashCode() {
+        assertThat(template.hashCode(), anything());
+    }
 
-	@Test
-	public void testHashCode() {
-		assertThat(template.hashCode(), anything());
-	}
+    @Test
+    public void testFromTemplateNamePDF() {
+        assertThat(template.getType(), is(TemplateType.PDF));
+    }
 
-	@Test
-	public void testFromTemplateNamePDF() {
-		assertThat(template.getType(), is(TemplateType.PDF));
-	}
+    @Test
+    public void testGetAbsolutePath() {
+        assertThat(template.getAbsolutePath(), containsString("/web1.pdf"));
+    }
 
-	@Test
-	public void testGetAbsolutePath() {
-		assertThat(template.getAbsolutePath(), containsString("/web1.pdf"));
-	}
+    @Test
+    public void testGetName() {
+        assertThat(template.getName(), is(equalTo("web1.pdf")));
+    }
 
-	@Test
-	public void testGetName() {
-		assertThat(template.getName(), is(equalTo("web1.pdf")));
-	}
+    @Test
+    public void testGetPath() {
+        assertThat(template.getPath(), is(equalTo(TEMPLATE_TEMP_DIR)));
+    }
 
-	@Test
-	public void testGetPath() {
-		assertThat(template.getPath(), is(equalTo(templateTempDir)));
-	}
+    @Test
+    public void testGetType() {
+        assertThat(template.getType(), is(TemplateType.PDF));
+    }
 
-	@Test
-	public void testGetType() {
-		assertThat(template.getType(), is(TemplateType.PDF));
-	}
+    @Test
+    public void testSetName() {
+        template.setName("name");
+        assertThat(template.getName(), is(equalTo("name")));
+    }
 
-	@Test
-	public void testSetName() {
-		template.setName("name");
-		assertThat(template.getName(), is(equalTo("name")));
-	}
-
-	@Test
-	public void testToString() {
-		assertThat(template.toString(), containsString("web1.pdf"));
-	}
+    @Test
+    public void testToString() {
+        assertThat(template.toString(), containsString("web1.pdf"));
+    }
 
 }
