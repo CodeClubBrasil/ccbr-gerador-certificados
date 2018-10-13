@@ -1,12 +1,12 @@
-package org.codeclubbrail.certificategenerator;
+package org.codeclubbrasil.certificategenerator;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
-import org.codeclubbrail.certificategenerator.resources.model.Course;
 import org.codeclubbrasil.certificategenerator.domain.AvailableCourse;
+import org.codeclubbrasil.certificategenerator.domain.Course;
 import org.junit.Before;
 import org.junit.Test;
 

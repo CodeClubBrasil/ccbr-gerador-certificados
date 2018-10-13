@@ -1,10 +1,10 @@
-package org.codeclubbrail.certificategenerator;
+package org.codeclubbrasil.certificategenerator;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
 
-import org.codeclubbrail.certificategenerator.resources.model.Certificate;
+import org.codeclubbrasil.certificategenerator.resources.model.Certificate;
 import org.junit.Before;
 import org.junit.Test;
 

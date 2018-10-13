@@ -1,4 +1,4 @@
-package org.codeclubbrail.certificategenerator.resources.model;
+package org.codeclubbrasil.certificategenerator.resources.model;
 
 import java.util.Arrays;
 import java.util.List;
