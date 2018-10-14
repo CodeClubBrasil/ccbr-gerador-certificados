@@ -8,6 +8,7 @@ import static org.junit.Assert.assertThat;
 
 import org.codeclubbrasil.certificategenerator.domain.CertificateTemplate;
 import org.codeclubbrasil.certificategenerator.domain.TemplateType;
+import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -60,6 +61,11 @@ public class CertificateTemplateTest {
     @Test
     public void testToString() {
         assertThat(template.toString(), containsString("web1.pdf"));
+    }
+
+    @Test(expected = InvalidTemplateException.class)
+    public void invalidTemplate() throws InvalidTemplateException {
+        CertificateTemplate.fromTemplateNamePDF("java");
     }
 
 }

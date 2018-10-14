@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.codeclubbrasil.certificategenerator.api.v1.delegate.GeneratorDelegate;
 import org.codeclubbrasil.certificategenerator.api.v1.dto.GenerateDTO;
 import org.codeclubbrasil.certificategenerator.domain.Course;
@@ -42,7 +44,8 @@ public class CertificateGeneratorController {
 
     @GetMapping(value = "/courses", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation(value = "Listar cursos disponíveis")
-    public List<Course> allCources() {
+    public List<Course> allCources(HttpServletRequest request) {
+        System.out.println("Authorization = " + request.getHeader("Authorization"));
         return Course.fromAllAvaibleCourses();
     }
 

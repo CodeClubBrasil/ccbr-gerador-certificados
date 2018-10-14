@@ -4,11 +4,14 @@ import org.codeclubbrasil.certificategenerator.api.v1.dto.GenerateDTO;
 import org.codeclubbrasil.certificategenerator.domain.CertificateTemplate;
 import org.codeclubbrasil.certificategenerator.domain.CodeClubClass;
 import org.codeclubbrasil.certificategenerator.domain.GenerateOutput;
+import org.codeclubbrasil.certificategenerator.exception.GeneratorException;
+import org.codeclubbrasil.certificategenerator.exception.InvalidClassException;
+import org.codeclubbrasil.certificategenerator.exception.InvalidTemplateException;
 import org.codeclubbrasil.certificategenerator.service.GeneratorService;
 
 public class GeneratorDelegate {
 
-    public static GenerateOutput generateOutput(GenerateDTO generateDTO) throws Exception {
+    public static GenerateOutput generateOutput(GenerateDTO generateDTO) throws InvalidTemplateException, InvalidClassException, GeneratorException {
         GeneratorService service = new GeneratorService();
         CertificateTemplate template = CertificateTemplate.fromTemplateNamePDF(generateDTO.getCourse());
         CodeClubClass codeClass = CodeClubClass.fromClassName(generateDTO.getCourse());
