@@ -1,4 +1,4 @@
-package org.codeclubbrail.certificategenerator;
+package org.codeclubbrasil.certificategenerator;
 
 import org.junit.Ignore;
 import org.junit.Test;

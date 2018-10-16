@@ -23,7 +23,7 @@ public final class CertificateTemplate {
         this.type = type;
     }
 
-    public static CertificateTemplate fromTemplateNamePDF(String name) throws Exception {
+    public static CertificateTemplate fromTemplateNamePDF(String name) throws InvalidTemplateException {
         TemplateType templateType = TemplateType.PDF;
         CertificateTemplate template = new CertificateTemplate(templateType);
         template.setName(name + templateType.getExtension());

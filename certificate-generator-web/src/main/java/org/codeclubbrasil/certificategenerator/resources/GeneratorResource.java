@@ -1,12 +1,12 @@
-package org.codeclubbrail.certificategenerator.resources;
+package org.codeclubbrasil.certificategenerator.resources;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
 
-import org.codeclubbrail.certificategenerator.resources.model.Certificate;
-import org.codeclubbrail.certificategenerator.resources.model.Course;
-import org.codeclubbrail.certificategenerator.service.GeneratorServiceWeb;
+import org.codeclubbrasil.certificategenerator.resources.model.Certificate;
+import org.codeclubbrasil.certificategenerator.service.GeneratorServiceWeb;
+import org.codeclubbrasil.certificategenerator.domain.Course;
 import org.codeclubbrasil.certificategenerator.domain.GenerateOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

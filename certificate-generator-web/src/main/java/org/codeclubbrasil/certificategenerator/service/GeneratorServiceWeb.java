@@ -1,10 +1,9 @@
-package org.codeclubbrail.certificategenerator.service;
+package org.codeclubbrasil.certificategenerator.service;
 
-import org.codeclubbrail.certificategenerator.resources.model.Certificate;
+import org.codeclubbrasil.certificategenerator.resources.model.Certificate;
 import org.codeclubbrasil.certificategenerator.domain.CertificateTemplate;
 import org.codeclubbrasil.certificategenerator.domain.CodeClubClass;
 import org.codeclubbrasil.certificategenerator.domain.GenerateOutput;
-import org.codeclubbrasil.certificategenerator.service.GeneratorService;
 import org.springframework.stereotype.Service;
 
 @Service

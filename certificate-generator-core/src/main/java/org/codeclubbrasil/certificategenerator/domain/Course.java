@@ -1,9 +1,7 @@
-package org.codeclubbrail.certificategenerator.resources.model;
+package org.codeclubbrasil.certificategenerator.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.codeclubbrasil.certificategenerator.domain.AvailableCourse;
 
 import lombok.Data;
 
