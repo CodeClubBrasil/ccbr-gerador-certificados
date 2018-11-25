@@ -12,5 +12,4 @@ public class GeneratorServiceTest {
         new GeneratorService().generate(null, CodeClubClass.fromClassName("test"));
     }
 
-
 }

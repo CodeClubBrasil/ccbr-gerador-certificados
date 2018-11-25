@@ -12,5 +12,4 @@ public class InvalidTemplateException extends Exception {
         super(message, cause);
     }
 
-
 }
