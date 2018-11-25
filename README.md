@@ -8,10 +8,10 @@ https://certificategenerator.herokuapp.com/
 mvn clean install
 
 ## Build image:
-docker build --force-rm -t codeclubbrasil/gerador-certificados .
+docker build --force-rm -t codeclubbrasil/gerador-certificados:java8 .
 
 ## Run:
-docker run -p 8080:8080 codeclubbrasil/gerador-certificados
+docker run -p 8080:8080 codeclubbrasil/gerador-certificados:java8
 
 ## Access:
 http://localhost:8080/
