@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM adoptopenjdk/openjdk11-openj9
 RUN groupadd -r codeclub && useradd -r -g codeclub codeclub
 ENV CODECLUB_HOME "/opt/codeclub"
 RUN mkdir -p "${CODECLUB_HOME}" && \
@@ -7,4 +7,4 @@ ADD --chown=codeclub:codeclub certificate-generator-web/target/certificate-gener
 WORKDIR $CODECLUB_HOME
 EXPOSE 8080
 USER codeclub
-CMD ["java","-Xmx256M","-Djava.security.egd=file:/dev/./urandom","-jar", "certificate-generator-web.jar"]
+CMD ["java","-Xmx256M","-jar", "certificate-generator-web.jar"]
