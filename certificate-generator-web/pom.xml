@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.codeclubbrasil</groupId>
 		<artifactId>certificate-generator</artifactId>
-		<version>0.0.5-SNAPSHOT</version>
+		<version>0.0.6-SNAPSHOT</version>
 	</parent>
 
 	<groupId>org.codeclubbrasil</groupId>

@@ -24,7 +24,7 @@ import io.restassured.RestAssured;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CertificateGeneratorControllerTest {
 
-    private static final int COURSE_SIZE = 7;
+    private static final int COURSE_SIZE = 8;
 
     @Value("${local.server.port}")
     private int serverPort;
@@ -63,6 +63,7 @@ public class CertificateGeneratorControllerTest {
                 .body("[3].code", equalTo("scratch2"))
                 .body("[4].code", equalTo("scratch3"))
                 .body("[5].code", equalTo("web1"))
-                .body("[6].code", equalTo("web2"));
+                .body("[6].code", equalTo("web2"))
+                .body("[7].code", equalTo("general"));
     }
 }
