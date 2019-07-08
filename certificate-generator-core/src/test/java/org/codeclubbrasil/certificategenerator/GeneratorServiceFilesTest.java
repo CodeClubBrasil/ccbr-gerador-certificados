@@ -37,7 +37,12 @@ public class GeneratorServiceFilesTest {
     public void whenDataOkThenGenerateScratch2() throws Exception {
         List<String> students = Arrays.asList("ARTHUR SCHRAMM DE LIMA", "EVILYN BIANCA DE PAULA JUNG");
         callGenerate(AvailableCourse.SCRATCH2.getName(), AvailableCourse.SCRATCH2.getCode(), LEADER, students);
+    }
 
+    @Test
+    public void whenDataOkThenGenerateScratch3() throws Exception {
+        List<String> students = Arrays.asList("ARTHUR SCHRAMM DE LIMA", "EVILYN BIANCA DE PAULA JUNG");
+        callGenerate(AvailableCourse.SCRATCH3.getName(), AvailableCourse.SCRATCH3.getCode(), LEADER, students);
     }
 
     @Test()

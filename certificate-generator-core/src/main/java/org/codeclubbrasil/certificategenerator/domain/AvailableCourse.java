@@ -12,7 +12,8 @@ public enum AvailableCourse {
     SCRATCH2("scratch2", "Scratch 2"),
     SCRATCH3("scratch3", "Scratch 3"),
     WEB1("web1", "Web 1"),
-    WEB2("web2", "Web 2");
+    WEB2("web2", "Web 2"),
+    GENERAL("general", "Geral");
 
     @Getter
     private String code;
