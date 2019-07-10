@@ -18,4 +18,3 @@ http://localhost:8080/
 
 ## Docker Hub:
 https://hub.docker.com/r/codeclubbrasil/gerador-certificados/
-
