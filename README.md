@@ -4,9 +4,6 @@ Gerador de Certificados Code Club Brasil
 # Demo app:
 https://certificategenerator.herokuapp.com/
 
-## Build:
-mvn clean install
-
 ## Build image:
 docker build --force-rm -t codeclubbrasil/gerador-certificados:java8 .
 
